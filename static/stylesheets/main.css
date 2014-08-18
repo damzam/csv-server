@@ -1,0 +1,46 @@
+input {
+  font-size: 16px;
+}
+
+.center {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+#all_content {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#header {
+  border: white solid 3px;
+  border-bottom: black solid 3px;
+}
+
+#logo {
+  float: left;
+}
+
+#queryForm {
+  margin-top: 35px;
+  text-align: center;
+}
+
+#queryText {
+  width: 550px;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+#title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 10px 0px 10px 0px;
+}

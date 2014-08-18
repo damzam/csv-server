@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="static/stylesheets/main.css" />
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.18/angular.min.js"</script>
+  <script src="/static/javascript/main.js"</script>
+</head>
+
+<body>
+  <div id="all_content">
+
+    <div id="header">
+      <div>
+        <img id="logo" src="/static/images/pandas.jpg" />
+      </div>
+      <div id="title">
+        Query a CSV File with Pandas
+      </div>
+    </div>
+
+    <div ng-app="csvQuery" id="queryForm">
+      <form ng-submit="submit()" ng-controller="QueryController">
+        <input id="queryText" type="text" ng-model="text" name="text" autofocus />
+        <input type="submit" id="submit" value="Submit" />
+        <div id="result" ng-bind-html="result"></div>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    angular.module('csvQuery', [])
+      .controller('QueryController', function($scope, $http, $sce) {
+        $scope.submit = function() {
+          $http({method: 'GET', url: 'http://localhost:5000/query?q=' + encodeURIComponent($scope.text)}).
+            success(function(data, status, headers, config) {
+              var index = data.indexOf(':');
+              var count = data.substring(0, index);
+              var records = data.substring(index + 1, data.length);
+              var result = '<h4>Your query returned ' + count + ' records</h4>' + records;
+              $scope.result = $sce.trustAsHtml(result);
+            }).
+            error(function(data, status, headers, config) {
+              $scope.result = $sce.trustAsHtml('<span class="error">Error: ' + data + '</span>');
+            });
+        }
+      });
+  </script>
+
+</body>
+</html>
