@@ -7,9 +7,16 @@ app consists of a single web page with a query input field, query
 button and the query results (# rows returned and the data in a
 table).
 
+Pre-reqs:
+
+The application should be run in an environment that has Flask
+and Pandas installed.
+
 Usage:
 
 ./csv_server.py [--debug] <csv_file>
+
+The app can be accessed at http://127.0.0.1:5000
 
 Notes:
 
